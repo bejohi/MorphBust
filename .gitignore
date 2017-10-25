@@ -162,3 +162,4 @@ fabric.properties
 .DS_Store
 log.txt
 image_scan_result.txt
+_config.yml

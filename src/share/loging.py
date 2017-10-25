@@ -16,6 +16,7 @@ def log_error(message: str):
 
 
 def set_log_path(path: str):
+    global __log_path
     __log_path = path
 
 
