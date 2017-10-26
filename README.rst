@@ -1,4 +1,6 @@
-## MorphBust
+MorphBust
+=========
 
-###Installation (for development)
+Installation (for development)
+------------------------------
 pip install -e .
