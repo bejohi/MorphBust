@@ -21,11 +21,10 @@ import unittest
 from lbp import load_img_as_gray_arr
 import numpy as np
 
+from tests.integration_test.lbp.integration_test_base import IntegrationTestBase
 
-class LoadImgAsGrayArrTest(unittest.TestCase):
-    test_img_path = "../../mock_data/example_image_davinci.png"
-    test_img_height = 800
-    test_img_width = 800
+
+class LoadImgAsGrayArrTest(unittest.TestCase, IntegrationTestBase):
 
     def test_return_type_is_numpy_array(self):
         # arrange & act
@@ -34,13 +33,21 @@ class LoadImgAsGrayArrTest(unittest.TestCase):
         # assert
         self.assertTrue(isinstance(img, np.ndarray))
 
-    def test_height_and_with_ar_ok(self):
+    def test_height_and_width_are_ok(self):
         # arrange & act
         img = load_img_as_gray_arr(self.test_img_path)
 
         # assert
         self.assertEqual(len(img), self.test_img_height)
         self.assertEqual(len(img[0]), self.test_img_width)
+
+    def test_height_and_width_are_ok_when_different(self):
+        # arrange & act
+        img = load_img_as_gray_arr(self.morph_img_path)
+
+        # assert
+        self.assertEqual(len(img), self.morph_img_height)
+        self.assertEqual(len(img[0]), self.morph_img_width)
 
 if __name__ == "__main__":
     unittest.main()
