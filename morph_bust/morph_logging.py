@@ -45,9 +45,3 @@ def __write_to_log_file(message: str):
         log_file.close()
     except FileNotFoundError:
         print("FATAL LOGGING ERROR: Writing fo file " + str(__log_path) + " was not possible")
-
-
-class Log:
-    def init(self, log_path: str):
-        pass
-

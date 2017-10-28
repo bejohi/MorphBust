@@ -14,19 +14,33 @@ GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-The visualizer-module helps to visualize image and binary data.
 """
 
-from matplotlib.pyplot import *
+import unittest
 
 from lbp import load_img_as_gray_arr
+import numpy as np
+
+
+class LoadImgAsGrayArrTest(unittest.TestCase):
+    test_img_path = "../../mock_data/example_image_davinci.png"
+    test_img_height = 800
+    test_img_width = 800
+
+    def test_return_type_is_numpy_array(self):
+        # arrange & act
+        img = load_img_as_gray_arr(self.test_img_path)
+
+        # assert
+        self.assertTrue(isinstance(img, np.ndarray))
+
+    def test_height_and_with_ar_ok(self):
+        # arrange & act
+        img = load_img_as_gray_arr(self.test_img_path)
+
+        # assert
+        self.assertEqual(len(img), self.test_img_height)
+        self.assertEqual(len(img[0]), self.test_img_width)
 
 if __name__ == "__main__":
-    """For testing purpose only!"""
-    img_path = "C:\\Users\\Jonas Hielscher\\Desktop\\TDAForITD\\data_storage\\images\\example_image_davinci.png"
-    gray_img = load_img_as_gray_arr(img_path)
-    print(gray_img.shape)
-    print(gray_img[0])
-    imshow(gray_img)
-    show()
+    unittest.main()

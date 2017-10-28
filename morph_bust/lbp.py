@@ -19,7 +19,7 @@ The lbp-module provides functions to calculate the local binary pattern from a g
 """
 
 from PIL import Image
-import logging as log
+import morph_logging as log
 import numpy as np
 
 

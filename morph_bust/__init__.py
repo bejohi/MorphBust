@@ -39,6 +39,6 @@ def main():
                         help='show programs version number and exit')
     args = parser.parse_args()
 
-    from morph_bust.logging import Log
+    from morph_bust.morph_logging import Log
 
     Log.init(args.log)
