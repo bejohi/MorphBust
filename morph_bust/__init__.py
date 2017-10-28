@@ -20,20 +20,25 @@ import argparse
 import datetime
 from pathlib import Path
 
-def main ():
+
+def main():
     home = str(Path.home())
     now = datetime.datetime.now()
-    timestamp = str(now.year)+str(now.month)+str(now.day)+str(now.hour)+str(now.minute)+str(now.second)
-    
+    timestamp = str(now.year) + str(now.month) + str(now.day) + str(now.hour) + str(now.minute) + str(now.second)
+
     parser = argparse.ArgumentParser(description='MorphBust - detect manipulation (morphing) in images.')
-    parser.add_argument('imagepaths', metavar='ImagePath', nargs='+', help='add (multiple) image file paths to be examinated')
-    parser.add_argument('-r', '--raw', action='store_true', help='disable face detection and cropping (might result in long calculations)') 
-    parser.add_argument('-l', '--log', default=home+'/morphbust_'+timestamp+'.log', help='change log file path (by default the log file is stored in your home directory)')
-    parser.add_argument('-d', '--debug', action='store_true', help='enable debugging for more detailed output in the logfiles')
-    parser.add_argument('-v', '--version', action='version', version='%(prog)s 0.0.1', help='show programs version number and exit') 
+    parser.add_argument('imagepaths', metavar='ImagePath', nargs='+',
+                        help='add (multiple) image file paths to be examinated')
+    parser.add_argument('-r', '--raw', action='store_true',
+                        help='disable face detection and cropping (might result in long calculations)')
+    parser.add_argument('-l', '--log', default=home + '/morphbust_' + timestamp + '.log',
+                        help='change log file path (by default the log file is stored in your home directory)')
+    parser.add_argument('-d', '--debug', action='store_true',
+                        help='enable debugging for more detailed output in the logfiles')
+    parser.add_argument('-v', '--version', action='version', version='%(prog)s 0.0.1',
+                        help='show programs version number and exit')
     args = parser.parse_args()
-    
+
     from morph_bust.logging import Log
 
-    Log.init (args.log)
-    
+    Log.init(args.log)

@@ -13,10 +13,8 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>. 
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+The lbp module provides functions to calculate the local binary pattern from a given image source.
 """
 
-
-class Log:
-    def init(self, log_path: str):
-        pass
