@@ -20,13 +20,11 @@ The visualizer-module helps to visualize image and binary data.
 
 from matplotlib.pyplot import *
 
-from lbp import load_img_as_gray_arr
+from lbp import *
 
 if __name__ == "__main__":
     """For testing purpose only!"""
-    img_path = "../tests/mock_data/morph_example.jpg"
+    img_path = "../tests/mock_data/001_03_002_03_alpha0.5_combined_morph.png"
     gray_img = load_img_as_gray_arr(img_path)
-    print(gray_img.shape)
-    print(gray_img[0])
-    imshow(gray_img)
-    show()
+    lbp_skeleton = create_lbp_skeleton(gray_img)
+    print(lbp_skeleton.nbytes)

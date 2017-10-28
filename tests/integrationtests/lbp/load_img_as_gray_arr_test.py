@@ -21,7 +21,7 @@ import unittest
 from lbp import load_img_as_gray_arr
 import numpy as np
 
-from tests.integration_test.lbp.integration_test_base import IntegrationTestBase
+from integration_test_base import IntegrationTestBase
 
 
 class LoadImgAsGrayArrTest(unittest.TestCase, IntegrationTestBase):
