@@ -19,7 +19,7 @@ The lbp-module provides functions to calculate the local binary pattern from a g
 """
 
 from PIL import Image
-import morph_logging as log
+import log as log
 import numpy as np
 
 
@@ -35,6 +35,13 @@ def load_img_as_gray_arr(img_path: str):
         img_gray = Image.open(img_path).convert("L")
         return np.asarray(img_gray)
     except FileNotFoundError:
-        error_msg = "Image " + str(img_path) + " was not found."
+        error_msg = str(load_img_as_gray_arr.__name__) + ": Image " + str(img_path) + " was not found."
         log.log_error(error_msg)
         raise FileNotFoundError(error_msg)
+
+
+def create_lbp_skeleton(gray_arr: np.ndarray):
+    """Creates a 2D array of lbp values (binary data) from a given 2D array with gray values."""
+    for y in range(len(gray_arr)):
+        for x in range(len(gray_arr[0])):
+            pass
