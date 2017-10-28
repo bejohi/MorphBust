@@ -25,7 +25,6 @@ from tests.integration_test.lbp.integration_test_base import IntegrationTestBase
 
 
 class LoadImgAsGrayArrTest(unittest.TestCase, IntegrationTestBase):
-
     def test_return_type_is_numpy_array(self):
         # arrange & act
         img = load_img_as_gray_arr(self.test_img_path)
@@ -48,6 +47,14 @@ class LoadImgAsGrayArrTest(unittest.TestCase, IntegrationTestBase):
         # assert
         self.assertEqual(len(img), self.morph_img_height)
         self.assertEqual(len(img[0]), self.morph_img_width)
+
+    def test_value_is_unit8(self):
+        # arrange & act
+        img = load_img_as_gray_arr(self.morph_img_path)
+
+        # assert
+        self.assertTrue(isinstance(img[0, 0], np.uint8))
+
 
 if __name__ == "__main__":
     unittest.main()

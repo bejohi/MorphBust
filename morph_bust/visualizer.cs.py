@@ -24,7 +24,7 @@ from lbp import load_img_as_gray_arr
 
 if __name__ == "__main__":
     """For testing purpose only!"""
-    img_path = "C:\\Users\\Jonas Hielscher\\Desktop\\TDAForITD\\data_storage\\images\\example_image_davinci.png"
+    img_path = "../tests/mock_data/morph_example.jpg"
     gray_img = load_img_as_gray_arr(img_path)
     print(gray_img.shape)
     print(gray_img[0])
