@@ -15,26 +15,5 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-The lbp-module provides functions to calculate the local binary pattern from a given image source.
+The visualizer-module helps to visualize image and binary data.
 """
-
-from PIL import Image
-import logging as log
-import numpy as np
-
-
-def load_img_as_gray_arr(img_path: str):
-    """
-    Loads an image from the hard drive and converts it to an 2D array, which stores the gray values
-    for every pixel. Returns a numpy.array. Might raise FileNotFound error.
-        
-    Keyword arguments:
-        img_path -- the image path on the file system.
-    """
-    try:
-        img_gray = Image.open(img_path).convert("L")
-        return np.asarray(img_gray)
-    except FileNotFoundError:
-        error_msg = "Image " + str(img_path) + " was not found."
-        log.log_error(error_msg)
-        raise FileNotFoundError(error_msg)
