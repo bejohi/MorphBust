@@ -31,7 +31,7 @@ def main():
                         help='add (multiple) image file paths to be examinated')
     parser.add_argument('-r', '--raw', action='store_true',
                         help='disable face detection and cropping (might result in long calculations)')
-    parser.add_argument('-l', '--log', default=home + '/morphbust_' + timestamp + '.log',
+    parser.add_argument('-l', '--log', default=home + '/morphbust/morphbust_' + timestamp + '.log',
                         help='change log file path (by default the log file is stored in your home directory)')
     parser.add_argument('-d', '--debug', action='store_true',
                         help='enable debugging for more detailed output in the logfiles')
@@ -41,4 +41,4 @@ def main():
 
     from morph_bust.log import Log
 
-    Log.init(args.log)
+    Log.init(args.debug, args.log)
