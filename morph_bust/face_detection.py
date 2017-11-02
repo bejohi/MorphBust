@@ -29,7 +29,7 @@ class FaceDetector:
 
     def __init__(self, img_path: str):
         self.img = self.__load_img(img_path)
-        self.face_coordinates = self.__detect_face()
+        self.__detection_obj, self.face_coordinates = self.__detect_face()
 
     @staticmethod
     def __load_img(img_path):
@@ -48,7 +48,8 @@ class FaceDetector:
 
         Raises an ValueError if more than one face is found.
 
-        Returns an list of integer values: [left,top,right,bottom].
+        Returns the dlib detection object (only for class internal use) and an list of integer values: [left,top,
+        right,bottom].
         """
         detection = self.__blib_face_detector(self.img, 1)
         if len(detection) > 1:
@@ -56,7 +57,14 @@ class FaceDetector:
             log.log_error(error_message)
             raise ValueError(error_message)
         for k, d in enumerate(detection):
-            return [d.left(), d.top(), d.right(), d.bottom()]
+            return detection, [d.left(), d.top(), d.right(), d.bottom()]
+
+    def show(self):
+        """Shows the image and the face shape on the screen."""
+        win = dlib.image_window()
+        win.set_image(self.img)
+        win.add_overlay(self.__detection_obj)
+        win.wait_until_closed()
 
 
 if __name__ == "__main__":
@@ -64,3 +72,4 @@ if __name__ == "__main__":
     path = "../tests/sample_data/001.jpg"
     detector = FaceDetector(path)
     print(detector.face_coordinates)
+    detector.show()
