@@ -26,6 +26,7 @@ class FaceDetector:
     """ Provides functions to detect exactly one face in an image, which will be loaded from the given file path."""
 
     __blib_face_detector = dlib.get_frontal_face_detector()
+    __upsample_times = 1  # Defines how often the image well get upsampled, before the detection algorithm acts.
 
     def __init__(self, img_path: str):
         self.img = self.__load_img(img_path)
@@ -51,7 +52,7 @@ class FaceDetector:
         Returns the dlib detection object (only for class internal use) and an list of integer values: [left,top,
         right,bottom].
         """
-        detection = self.__blib_face_detector(self.img, 1)
+        detection = self.__blib_face_detector(self.img, self.__upsample_times)
         if len(detection) > 1:
             error_message = str(FaceDetector.__detect_face.__name__) + ": more than one face was found!"
             log.log_error(error_message)
