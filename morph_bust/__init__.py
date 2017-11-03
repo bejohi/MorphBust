@@ -34,11 +34,16 @@ def main():
     parser.add_argument('-l', '--log', default=home + '/morphbust/morphbust_' + timestamp + '.log',
                         help='change log file path (by default the log file is stored in your home directory)')
     parser.add_argument('-d', '--debug', action='store_true',
-                        help='enable debugging for more detailed output in the logfiles')
+                        help='enable debugging for more detailed output')
     parser.add_argument('-v', '--version', action='version', version='%(prog)s 0.0.1',
                         help='show programs version number and exit')
     args = parser.parse_args()
 
     from morph_bust.log import Log
-
+   
     Log.init(args.debug, args.log)
+    Log.logger.info('Program started.')
+    Log.logger.info('Debugging is set to ' + str(args.debug)+'.')
+    
+    from morph_bust.test import Test
+    Test.main() 

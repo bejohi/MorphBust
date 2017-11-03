@@ -21,24 +21,26 @@ import os
 import errno
 
 class LogManager:
-
+    
     def init (self, debug, logpath):
-        logger = logging.getLogger()
-        ch = logging.StreamHandler()
+        self.logger = logging.getLogger()
+        self.logger.name = 'MorphBust'
+        self.ch = logging.StreamHandler()
         os.makedirs(os.path.dirname(logpath), exist_ok=True)
-        fh = logging.FileHandler(logpath)
+        self.fh = logging.FileHandler(logpath)
         if debug == 'True':
-            logger.setLevel(logging.DEBUG)
-            ch.setLevel(logging.DEBUG)
-            fh.setLevel(logging.DEBUG)
+            self.logger.setLevel(logging.DEBUG)
+            self.ch.setLevel(logging.DEBUG)
+            self.fh.setLevel(logging.DEBUG)
         else:
-            logger.setLevel(logging.INFO)
-            ch.setLevel(logging.INFO)
-            fh.setLevel(logging.INFO)
-        formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-        ch.setFormatter(formatter)
-        fh.setFormatter(formatter)
-        logger.addHandler(ch)
-        logger.addHandler(fh)
-
+            self.logger.setLevel(logging.INFO)
+            self.ch.setLevel(logging.INFO)
+            self.fh.setLevel(logging.INFO)
+        self.formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+        self.ch.setFormatter(self.formatter)
+        self.fh.setFormatter(self.formatter)
+        self.logger.addHandler(self.ch)
+        self.logger.addHandler(self.fh)
+    def __getattr__ (self, name):
+        return logging.getLogger (name)
 Log = LogManager ()
