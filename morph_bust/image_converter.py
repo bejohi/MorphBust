@@ -77,7 +77,7 @@ def __get_all_png_paths_from_file_path(folder_path: str):
     """
     image_list = []
     for file_name in os.listdir(folder_path):
-        if file_name.endswith(".png") or file_name.endswith(".png"):
+        if __check_if_png(file_name):
             image_path = folder_path + "/" + file_name
             image_list.append(image_path)
     return image_list
