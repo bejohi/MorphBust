@@ -35,7 +35,7 @@ setup(
     keywords='morph morphing detection picture integrity security passport image topology analysis tampering '
              'detection',
     packages=find_packages(),
-    install_requires=['matplotlib', 'dlib', 'scikit-image', ],
+    install_requires=['matplotlib', 'dlib', 'scikit-image', 'PIL', ],
     extras_require={},
     package_data={},
     data_files=[],

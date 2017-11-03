@@ -17,8 +17,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 from skimage import io as img_io
-from morph_bust.log import Log 
+from morph_bust.log import Log
 import dlib
+
 
 class FaceDetector:
     """ Provides functions to detect exactly one face in an image, which will be loaded from the given file path."""
