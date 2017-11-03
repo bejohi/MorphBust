@@ -148,7 +148,8 @@ def __get_all_jpg_paths_from_file_path(folder_path: str):
     """
     image_list = []
     for file_name in os.listdir(folder_path):
-        if FaceDetector.check_if_jpg(file_name):
+        if FaceDetector.check_if_jpg(file_name) \
+                and not file_name.endswith("face.jpg"):  # In case we already created a face img. TODO:[bejohi] Cleanup.
             image_path = folder_path + "/" + file_name
             image_list.append(image_path)
     return image_list
