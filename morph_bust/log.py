@@ -16,32 +16,31 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 """
 
-import datetime
+import logging
+import os
+import errno
 
-__log_path = "log.txt"
-
-
-def log_info(message: str):
-    complete_message = str(datetime.datetime.now()) + ": " + str(message)
-    print(complete_message)
-    __write_to_log_file(complete_message)
-
-
-def log_error(message: str):
-    complete_message = "ERROR: " + str(datetime.datetime.now()) + ": " + str(message)
-    print(complete_message)
-    __write_to_log_file(complete_message)
-
-
-def set_log_path(path: str):
-    global __log_path
-    __log_path = path
-
-
-def __write_to_log_file(message: str):
-    try:
-        log_file = open(__log_path, "a")
-        log_file.write(message + "\n")
-        log_file.close()
-    except FileNotFoundError:
-        print("FATAL LOGGING ERROR: Writing fo file " + str(__log_path) + " was not possible")
+class LogManager:
+    
+    def init (self, debug, logpath):
+        self.logger = logging.getLogger()
+        self.logger.name = 'MorphBust'
+        self.ch = logging.StreamHandler()
+        os.makedirs(os.path.dirname(logpath), exist_ok=True)
+        self.fh = logging.FileHandler(logpath)
+        if debug == 'True':
+            self.logger.setLevel(logging.DEBUG)
+            self.ch.setLevel(logging.DEBUG)
+            self.fh.setLevel(logging.DEBUG)
+        else:
+            self.logger.setLevel(logging.INFO)
+            self.ch.setLevel(logging.INFO)
+            self.fh.setLevel(logging.INFO)
+        self.formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+        self.ch.setFormatter(self.formatter)
+        self.fh.setFormatter(self.formatter)
+        self.logger.addHandler(self.ch)
+        self.logger.addHandler(self.fh)
+    def __getattr__ (self, name):
+        return logging.getLogger (name)
+Log = LogManager ()
