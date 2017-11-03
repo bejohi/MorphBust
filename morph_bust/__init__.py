@@ -40,18 +40,7 @@ def main():
     args = parser.parse_args()
 
     from morph_bust.log import Log
-<<<<<<< HEAD
 
-    Log.init(args.log)
-
-    Log.logger.info('Program started.')
-    Log.logger.info('Debugging is set to ' + str(args.debug)+'.')
-=======
-   
     Log.init(args.debug, args.log)
     Log.logger.info('Program started.')
     Log.logger.info('Debugging is set to ' + str(args.debug)+'.')
-    
-    from morph_bust.test import Test
-    Test.main() 
->>>>>>> refs/remotes/origin/master
