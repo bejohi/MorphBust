@@ -19,7 +19,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 import argparse
 import datetime
 from pathlib import Path
-
+from morph_bust.log import Log
+from morph_bust.face_detection import Detector
 
 def main():
     home = str(Path.home())
@@ -39,12 +40,10 @@ def main():
                         help='show programs version number and exit')
     args = parser.parse_args()
 
-    from morph_bust.log import Log
     Log.init(args.debug, args.log)
     Log.logger.info('Program started.')
     Log.logger.debugg('Debugging is set to ' + str(args.debug)+'.')
     
-    from morph_bust.face_detection import Detector
     for imagepath in args.imagepaths:
         Detector.init(imagepath)
     
