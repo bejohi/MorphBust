@@ -26,7 +26,7 @@ class FaceDetector:
     __blib_face_detector = dlib.get_frontal_face_detector()
     __upsample_times = 1  # Defines how often the image well get upsampled, before the detection algorithm acts.
 
-    def __init__(self, img_path: str):
+    def __init__(self, img_path):
         self.img = self.__load_img(img_path)
         self.__detection_obj, self.face_coordinates = self.__detect_face()
 
@@ -66,9 +66,10 @@ class FaceDetector:
         win.wait_until_closed()
 
 
-if __name__ == "__main__":
-    """For testing purpose only!"""
-    path = "../tests/sample_data/001.jpg"
-    detector = FaceDetector(path)
-    print(detector.face_coordinates)
-    detector.show()
+Detector = FaceDetector ()    
+#if __name__ == "__main__":
+#    """For testing purpose only!"""
+#    path = "../tests/sample_data/001.jpg"
+#    detector = FaceDetector(path)
+#    print(detector.face_coordinates)
+#    detector.show()

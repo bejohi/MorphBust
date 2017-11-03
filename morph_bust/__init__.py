@@ -27,7 +27,7 @@ def main():
     timestamp = str(now.year) + str(now.month) + str(now.day) + str(now.hour) + str(now.minute) + str(now.second)
 
     parser = argparse.ArgumentParser(description='MorphBust - detect manipulation (morphing) in images.')
-    parser.add_argument('imagepaths', metavar='ImagePath', nargs='+',
+    parser.add_argument('imagepaths', metavar='ImagePath', type=str, nargs='+',
                         help='add (multiple) image file paths to be examinated')
     parser.add_argument('-r', '--raw', action='store_true',
                         help='disable face detection and cropping (might result in long calculations)')
@@ -40,7 +40,15 @@ def main():
     args = parser.parse_args()
 
     from morph_bust.log import Log
-
     Log.init(args.debug, args.log)
     Log.logger.info('Program started.')
-    Log.logger.info('Debugging is set to ' + str(args.debug)+'.')
+    Log.logger.debugg('Debugging is set to ' + str(args.debug)+'.')
+    
+    from morph_bust.face_detection import Detector
+    for imagepath in args.imagepaths:
+        Detector.init(imagepath)
+    
+
+
+    
+    

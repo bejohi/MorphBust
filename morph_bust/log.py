@@ -28,19 +28,24 @@ class LogManager:
         self.ch = logging.StreamHandler()
         os.makedirs(os.path.dirname(logpath), exist_ok=True)
         self.fh = logging.FileHandler(logpath)
+
         if debug == 'True':
             self.logger.setLevel(logging.DEBUG)
             self.ch.setLevel(logging.DEBUG)
             self.fh.setLevel(logging.DEBUG)
+
         else:
             self.logger.setLevel(logging.INFO)
             self.ch.setLevel(logging.INFO)
             self.fh.setLevel(logging.INFO)
+
         self.formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
         self.ch.setFormatter(self.formatter)
         self.fh.setFormatter(self.formatter)
         self.logger.addHandler(self.ch)
         self.logger.addHandler(self.fh)
+
     def __getattr__ (self, name):
         return logging.getLogger (name)
+
 Log = LogManager ()
