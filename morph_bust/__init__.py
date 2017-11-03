@@ -31,17 +31,27 @@ def main():
                         help='add (multiple) image file paths to be examinated')
     parser.add_argument('-r', '--raw', action='store_true',
                         help='disable face detection and cropping (might result in long calculations)')
-    parser.add_argument('-l', '--log', default=home + '/morphbust_' + timestamp + '.log',
+    parser.add_argument('-l', '--log', default=home + '/morphbust/morphbust_' + timestamp + '.log',
                         help='change log file path (by default the log file is stored in your home directory)')
     parser.add_argument('-d', '--debug', action='store_true',
-                        help='enable debugging for more detailed output in the logfiles')
+                        help='enable debugging for more detailed output')
     parser.add_argument('-v', '--version', action='version', version='%(prog)s 0.0.1',
                         help='show programs version number and exit')
     args = parser.parse_args()
 
     from morph_bust.log import Log
+<<<<<<< HEAD
 
     Log.init(args.log)
 
     Log.logger.info('Program started.')
     Log.logger.info('Debugging is set to ' + str(args.debug)+'.')
+=======
+   
+    Log.init(args.debug, args.log)
+    Log.logger.info('Program started.')
+    Log.logger.info('Debugging is set to ' + str(args.debug)+'.')
+    
+    from morph_bust.test import Test
+    Test.main() 
+>>>>>>> refs/remotes/origin/master
