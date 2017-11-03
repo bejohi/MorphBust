@@ -42,3 +42,6 @@ def main():
     from morph_bust.log import Log
 
     Log.init(args.log)
+
+    Log.logger.info('Program started.')
+    Log.logger.info('Debugging is set to ' + str(args.debug)+'.')
