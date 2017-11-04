@@ -19,6 +19,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 import argparse
 import datetime
 from pathlib import Path
+from morph_bust.log import Log
+from morph_bust.face_detection import FaceDetector
 
 
 def main():
@@ -27,7 +29,7 @@ def main():
     timestamp = str(now.year) + str(now.month) + str(now.day) + str(now.hour) + str(now.minute) + str(now.second)
 
     parser = argparse.ArgumentParser(description='MorphBust - detect manipulation (morphing) in images.')
-    parser.add_argument('imagepaths', metavar='ImagePath', nargs='+',
+    parser.add_argument('imagepaths', metavar='ImagePath', type=str, nargs='+',
                         help='add (multiple) image file paths to be examinated')
     parser.add_argument('-r', '--raw', action='store_true',
                         help='disable face detection and cropping (might result in long calculations)')
@@ -39,8 +41,13 @@ def main():
                         help='show programs version number and exit')
     args = parser.parse_args()
 
-    from morph_bust.log import Log
-
     Log.init(args.debug, args.log)
     Log.logger.info('Program started.')
-    Log.logger.info('Debugging is set to ' + str(args.debug)+'.')
+    Log.logger.debug('Debugging is set to ' + str(args.debug) + '.')
+
+    for imagepath in args.imagepaths:
+        detect = FaceDetector(imagepath)
+
+
+if __name__ == "__main__":
+    main()

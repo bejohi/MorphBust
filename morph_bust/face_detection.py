@@ -16,7 +16,6 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 import os
-
 import sys
 from skimage import io as img_io
 from log import Log
@@ -29,8 +28,10 @@ class FaceDetector:
     __dlib_face_detector = dlib.get_frontal_face_detector()
     __upsample_times = 1  # Defines how often the image will be upsampled, before the detection algorithm acts.
 
+
     def __init__(self, img_path: str):
         self.origin_img_path = img_path
+
         self.img = self.__load_img(img_path)
         self.__detection_obj, self.face_coordinates = self.__detect_face()
 
@@ -93,9 +94,14 @@ class FaceDetector:
         :return:the dlib detection object (only for class internal use) and an list of integer values: [left,top,right,bottom]
         :raises ValueError
         """
-        detection = self.__dlib_face_detector(self.img, self.__upsample_times)
+
+        detection = self.__blib_face_detector(self.img, self.__upsample_times)
+        if len(detection) == 0:
+            error_message = str(FaceDetector.__detect_face.__name__) + ": No face was detected!"
+            Log.face_detection.error(error_message)
+            raise ValueError(error_message)
         if len(detection) > 1:
-            error_message = str(FaceDetector.__detect_face.__name__) + ": more than one face was found!"
+            error_message = str(FaceDetector.__detect_face.__name__) + ": More than one face was found!"
             Log.face_detection.error(error_message)
             raise ValueError(error_message)
         for k, d in enumerate(detection):
@@ -131,6 +137,7 @@ class FaceDetector:
         win.add_overlay(self.__detection_obj)
         win.wait_until_closed()
 
+
     def show_face(self):
         """
             Shows the found face on the screen.
@@ -162,3 +169,4 @@ if __name__ == "__main__":
     for jpg_path in jpg_img_paths:
         detector = FaceDetector(jpg_path)
         detector.save_face()
+
