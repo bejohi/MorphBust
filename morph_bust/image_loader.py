@@ -3,6 +3,8 @@ import imghdr
 
 import sys
 
+from log import Log
+
 
 def import_image(image_path:str):
     # TODO Write method documentation.

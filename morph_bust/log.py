@@ -20,9 +20,9 @@ import logging
 import os
 import errno
 
+
 class LogManager:
-    
-    def init (self, debug, logpath):
+    def init(self, debug, logpath):
         self.logger = logging.getLogger()
         self.logger.name = 'MorphBust'
         self.ch = logging.StreamHandler()
@@ -49,3 +49,4 @@ class LogManager:
         return logging.getLogger (name)
 
 Log = LogManager ()
+
