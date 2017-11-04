@@ -19,7 +19,7 @@ import os
 
 import sys
 from skimage import io as img_io
-from morph_bust.log import Log
+from log import Log
 import dlib
 
 
