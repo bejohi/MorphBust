@@ -17,8 +17,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 from skimage import io as img_io
-from morph_bust.log import Log 
+from morph_bust.log import Log
 import dlib
+
 
 class FaceDetector:
     """ Provides functions to detect exactly one face in an image, which will be loaded from the given file path."""
@@ -64,12 +65,3 @@ class FaceDetector:
         win.set_image(self.img)
         win.add_overlay(self.__detection_obj)
         win.wait_until_closed()
-
-
-Detector = FaceDetector ()    
-#if __name__ == "__main__":
-#    """For testing purpose only!"""
-#    path = "../tests/sample_data/001.jpg"
-#    detector = FaceDetector(path)
-#    print(detector.face_coordinates)
-#    detector.show()

@@ -20,7 +20,8 @@ import argparse
 import datetime
 from pathlib import Path
 from morph_bust.log import Log
-from morph_bust.face_detection import Detector
+from morph_bust.face_detection import FaceDetector
+
 
 def main():
     home = str(Path.home())
@@ -42,12 +43,11 @@ def main():
 
     Log.init(args.debug, args.log)
     Log.logger.info('Program started.')
-    Log.logger.debugg('Debugging is set to ' + str(args.debug)+'.')
-    
+    Log.logger.debug('Debugging is set to ' + str(args.debug) + '.')
+
     for imagepath in args.imagepaths:
-        Detector.init(imagepath)
-    
+        detect = FaceDetector(imagepath)
 
 
-    
-    
+if __name__ == "__main__":
+    main()
