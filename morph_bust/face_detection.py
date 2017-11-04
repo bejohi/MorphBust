@@ -52,8 +52,12 @@ class FaceDetector:
         right,bottom].
         """
         detection = self.__blib_face_detector(self.img, self.__upsample_times)
+        if len(detection) == 0:
+            error_message = str(FaceDetector.__detect_face.__name__) + ": No face was detected!"
+            Log.face_detection.error(error_message)
+            raise ValueError(error_message)
         if len(detection) > 1:
-            error_message = str(FaceDetector.__detect_face.__name__) + ": more than one face was found!"
+            error_message = str(FaceDetector.__detect_face.__name__) + ": More than one face was found!"
             Log.face_detection.error(error_message)
             raise ValueError(error_message)
         for k, d in enumerate(detection):
