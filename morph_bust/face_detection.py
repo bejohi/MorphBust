@@ -18,7 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 import os
 import sys
 from skimage import io as img_io
-from log import Log
+from morph_bust.log import Log
 import dlib
 
 
