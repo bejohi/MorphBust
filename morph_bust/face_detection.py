@@ -18,7 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 import os
 import sys
 from skimage import io as img_io
-from morph_bust.log import Log
+from log import Log
 import dlib
 
 
@@ -167,6 +167,9 @@ if __name__ == "__main__":
     image_folder_path = str(sys.argv[1])
     jpg_img_paths = __get_all_jpg_paths_from_file_path(image_folder_path)
     for jpg_path in jpg_img_paths:
-        detector = FaceDetector(jpg_path)
-        detector.save_face()
+        try:
+            detector = FaceDetector(jpg_path)
+            detector.save_face()
+        except:
+            pass
 
