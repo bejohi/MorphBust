@@ -45,9 +45,6 @@ def main():
     Log.logger.info('Program started.')
     Log.logger.debug('Debugging is set to ' + str(args.debug) + '.')
 
-    for imagepath in args.imagepaths:
-        detect = FaceDetector(imagepath)
-
 
 if __name__ == "__main__":
     main()
