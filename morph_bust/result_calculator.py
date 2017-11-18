@@ -129,7 +129,7 @@ if __name__ == "__main__":
     combined_info = extract_img_info_from_result_file(__combined_path)
     splicing_info = extract_img_info_from_result_file(__splicing_path)
     neutral_info = extract_img_info_from_result_file(__neutral_path, True)
-
+    print("\n")
     neutral_average = get_overall_average_of_list(neutral_info)
     print("Neutral average: " + str(neutral_average) + " with " + str(
         len(neutral_info)) + " images")
@@ -139,7 +139,7 @@ if __name__ == "__main__":
         len(combined_info)) + " images")
     print("Complete average: " + str(get_overall_average_of_list(complete_info)) + " with " + str(
         len(complete_info)) + " images")
-
+    print("\n")
     complete_diff = calculate_differences_between_morphs_and_origin(complete_info, neutral_info)
     combined_diff = calculate_differences_between_morphs_and_origin(combined_info, neutral_info)
     splicing_diff = calculate_differences_between_morphs_and_origin(splicing_info, neutral_info)
@@ -152,10 +152,14 @@ if __name__ == "__main__":
     print("Splicing diff: " + str(splicing_diff_result))
 
     complete_golden_line = neutral_average / ((complete_diff_result[2] + complete_diff_result[3]) / 2)
-    print("Complete golden line : " + str(compare_morphs_with_golden_line(complete_info, complete_golden_line)))
-
     combined_golden_line = neutral_average / ((combined_diff_result[2] + combined_diff_result[3]) / 2)
-    print("Combined golden line: " + str(compare_morphs_with_golden_line(combined_info, combined_golden_line)))
-
     splicing_golden_line = neutral_average / ((splicing_diff_result[2] + splicing_diff_result[3]) / 2)
-    print("Splicing golden line: " + str(compare_morphs_with_golden_line(splicing_info, splicing_golden_line)))
+
+    print("\n")
+    print("Complete golden line: " + str(complete_golden_line))
+    print("Combined golden line: " + str(combined_golden_line))
+    print("Splicing golden line: " + str(splicing_golden_line))
+    print("\n")
+    print("Complete golden line matches: " + str(compare_morphs_with_golden_line(complete_info, complete_golden_line)))
+    print("Combined golden line matches: " + str(compare_morphs_with_golden_line(combined_info, combined_golden_line)))
+    print("Splicing golden line matches: " + str(compare_morphs_with_golden_line(splicing_info, splicing_golden_line)))
